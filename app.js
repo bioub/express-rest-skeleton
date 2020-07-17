@@ -17,14 +17,16 @@ app.use(cors());
 app.use('/api/contacts', contactRoutes);
 app.use('/api/users', userRoutes);
 
-app.use('/api', (req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use('/api', (req, res, next) => {
   res.statusCode = 404;
   res.json({
     msg: req.notFoundReason || 'Not Found',
   });
 });
 
-app.use('/api', (err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+app.use('/api', (err, req, res, next) => {
   res.statusCode = 500;
   res.json({
     msg: err.message,
