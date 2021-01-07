@@ -1,33 +1,33 @@
 const express = require('express');
 
 const authenticate = require('../middlewares/authenticate');
-const contactCtrl = require('../controllers/contact');
+const todoCtrl = require('../controllers/todo');
 
 const router = express.Router();
 
-router.get('/', 
-  contactCtrl.list,
+router.get('/',
+  todoCtrl.list,
 );
 
-router.get('/:id', 
-  contactCtrl.show,
+router.get('/:id',
+  todoCtrl.show,
 );
 
 router.post('/',
   authenticate,
   express.json(),
-  contactCtrl.add
+  todoCtrl.add
 );
 
-router.delete('/:id', 
+router.delete('/:id',
   authenticate,
-  contactCtrl.delete,
+  todoCtrl.delete,
 );
 
-router.put('/:id', 
+router.put('/:id',
   authenticate,
   express.json(),
-  contactCtrl.update,
+  todoCtrl.update,
 );
 
 module.exports = router;

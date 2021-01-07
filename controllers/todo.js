@@ -1,4 +1,4 @@
-const Contact = require('../models/contact');
+const Todo = require('../models/todo');
 
 /**
  * @param req {import('express').Request}
@@ -7,8 +7,8 @@ const Contact = require('../models/contact');
  */
 exports.list = async (req, res, next) => {
   try {
-    const contacts = await Contact.find();
-    res.json(contacts);
+    const todos = await Todo.find();
+    res.json(todos);
   }
   catch (err) {
     next(err);
@@ -22,14 +22,14 @@ exports.list = async (req, res, next) => {
  */
 exports.show = async (req, res, next) => {
   try {
-    const contact = await Contact.findById(req.params.id);
+    const todo = await Todo.findById(req.params.id);
 
-    if (!contact) {
-      req.notFoundReason = `Contact ${req.params.id} not found`;
+    if (!todo) {
+      req.notFoundReason = `Todo ${req.params.id} not found`;
       return next();
     }
 
-    res.json(contact);
+    res.json(todo);
   }
   catch (err) {
     next(err);
@@ -43,9 +43,9 @@ exports.show = async (req, res, next) => {
  */
 exports.add = async (req, res, next) => {
   try {
-    const contact = await Contact.create(req.body);
+    const todo = await Todo.create(req.body);
     res.statusCode = 201;
-    res.json(contact);
+    res.json(todo);
   }
   catch (err) {
     next(err);
@@ -59,14 +59,14 @@ exports.add = async (req, res, next) => {
  */
 exports.delete = async (req, res, next) => {
   try {
-    const contact = await Contact.findByIdAndDelete(req.params.id);
+    const todo = await Todo.findByIdAndDelete(req.params.id);
 
-    if (!contact) {
-      req.notFoundReason = `Contact ${req.params.id} not found`;
+    if (!todo) {
+      req.notFoundReason = `Todo ${req.params.id} not found`;
       return next();
     }
 
-    res.json(contact);
+    res.json(todo);
   }
   catch (err) {
     next(err);
@@ -80,14 +80,14 @@ exports.delete = async (req, res, next) => {
  */
 exports.update = async (req, res, next) => {
   try {
-    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body);
+    const todo = await Todo.findByIdAndUpdate(req.params.id, req.body);
 
-    if (!contact) {
-      req.notFoundReason = `Contact ${req.params.id} not found`;
+    if (!todo) {
+      req.notFoundReason = `Todo ${req.params.id} not found`;
       return next();
     }
 
-    res.json(contact);
+    res.json(todo);
   }
   catch (err) {
     next(err);
