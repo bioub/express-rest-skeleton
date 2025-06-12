@@ -8,10 +8,10 @@ const user = {
 };
 
 /**
- * 
- * @param {object} credentials 
- * @param {string} credentials.username 
- * @param {string} credentials.password 
+ *
+ * @param {object} credentials
+ * @param {string} credentials.username
+ * @param {string} credentials.password
  */
 function login(credentials) {
   if (

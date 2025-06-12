@@ -1,17 +1,16 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^5.1.0",
     "morgan": "^1.10.0",
-    "uuid": "^9.0.1"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "nodemon": "^3.1.0"
+    "eslint": "^9.28.0"
   },
   "scripts": {
     "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "dev": "node --watch index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   }

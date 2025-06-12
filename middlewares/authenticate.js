@@ -6,7 +6,7 @@ const { tokens } = require('../models/user');
  * @param next {import('express').NextFunction}
  */
 function authenticate(req, res, next) {
-  if (tokens.includes(req.headers.authorization)) {
+  if (tokens.includes(req.headers.authorization.slice(7))) {
     return next();
   }
 
