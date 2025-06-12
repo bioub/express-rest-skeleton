@@ -1,4 +1,4 @@
-const { tokens } = require('../models/user');
+import { tokens } from '../models/user.js';
 
 /**
  * @param req {import('express').Request}
@@ -16,4 +16,4 @@ function authenticate(req, res, next) {
   });
 }
 
-module.exports = authenticate;
+export default authenticate;

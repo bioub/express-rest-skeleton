@@ -69,8 +69,10 @@ function findByIdAndUpdate(id, newTodo) {
   return Promise.resolve(todo);
 }
 
-exports.find = find;
-exports.findById = findById;
-exports.create = create;
-exports.findByIdAndDelete = findByIdAndDelete;
-exports.findByIdAndUpdate = findByIdAndUpdate;
+export {
+  find,
+  findById,
+  create,
+  findByIdAndDelete,
+  findByIdAndUpdate,
+};

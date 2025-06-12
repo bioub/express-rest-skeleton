@@ -1,9 +1,9 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
 
-const todoRoutes = require('./routes/todo');
-const userRoutes = require('./routes/user');
+import todoRoutes from './routes/todo.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
@@ -33,4 +33,4 @@ app.use('/api', (err, req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;

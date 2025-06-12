@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 
-const authenticate = require('../middlewares/authenticate');
-const todoCtrl = require('../controllers/todo');
+import authenticate from '../middlewares/authenticate.js';
+import * as todoCtrl from '../controllers/todo.js';
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.post('/',
 // prettier-ignore
 router.delete('/:id',
   authenticate,
-  todoCtrl.delete,
+  todoCtrl.deleteTodo,
 );
 
 // prettier-ignore
@@ -35,4 +35,4 @@ router.put('/:id',
   todoCtrl.update,
 );
 
-module.exports = router;
+export default router;

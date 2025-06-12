@@ -1,11 +1,11 @@
-const Todo = require('../models/todo');
+import * as Todo from '../models/todo.js';
 
 /**
  * @param req {import('express').Request}
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-exports.list = async (req, res, next) => {
+export async function list(req, res, next) {
   try {
     const todos = await Todo.find();
     res.json(todos);
@@ -20,7 +20,7 @@ exports.list = async (req, res, next) => {
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-exports.show = async (req, res, next) => {
+export async function show(req, res, next) {
   try {
     const todo = await Todo.findById(req.params.id);
 
@@ -41,7 +41,7 @@ exports.show = async (req, res, next) => {
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-exports.add = async (req, res, next) => {
+export async function add(req, res, next) {
   try {
     const todo = await Todo.create(req.body);
     res.statusCode = 201;
@@ -57,7 +57,7 @@ exports.add = async (req, res, next) => {
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-exports.delete = async (req, res, next) => {
+export async function deleteTodo(req, res, next) {
   try {
     const todo = await Todo.findByIdAndDelete(req.params.id);
 
@@ -78,7 +78,7 @@ exports.delete = async (req, res, next) => {
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-exports.update = async (req, res, next) => {
+export async function update(req, res, next) {
   try {
     const todo = await Todo.findByIdAndUpdate(req.params.id, req.body);
 
