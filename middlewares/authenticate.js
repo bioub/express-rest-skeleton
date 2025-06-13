@@ -6,7 +6,7 @@ import { tokens } from '../models/user.js';
  * @param next {import('express').NextFunction}
  */
 function authenticate(req, res, next) {
-  if (tokens.includes(req.headers.authorization.slice(7))) {
+  if (tokens.includes(req.headers.authorization?.slice(7))) {
     return next();
   }
 

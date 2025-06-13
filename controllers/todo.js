@@ -5,52 +5,37 @@ import * as Todo from '../models/todo.js';
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-export async function list(req, res, next) {
-  try {
-    const todos = await Todo.find();
-    res.json(todos);
-  }
-  catch (err) {
-    next(err);
-  }
-};
+export async function listTodos(req, res, next) {
+  const todos = await Todo.find();
+  res.json(todos);
+}
 
 /**
  * @param req {import('express').Request}
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-export async function show(req, res, next) {
-  try {
-    const todo = await Todo.findById(req.params.id);
+export async function showTodo(req, res, next) {
+  const todo = await Todo.findById(req.params.id);
 
-    if (!todo) {
-      req.notFoundReason = `Todo ${req.params.id} not found`;
-      return next();
-    }
+  if (!todo) {
+    req.notFoundReason = `Todo ${req.params.id} not found`;
+    return next();
+  }
 
-    res.json(todo);
-  }
-  catch (err) {
-    next(err);
-  }
-};
+  res.json(todo);
+}
 
 /**
  * @param req {import('express').Request}
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-export async function add(req, res, next) {
-  try {
-    const todo = await Todo.create(req.body);
-    res.statusCode = 201;
-    res.json(todo);
-  }
-  catch (err) {
-    next(err);
-  }
-};
+export async function addTodo(req, res, next) {
+  const todo = await Todo.create(req.body);
+  res.statusCode = 201;
+  res.json(todo);
+}
 
 /**
  * @param req {import('express').Request}
@@ -58,38 +43,44 @@ export async function add(req, res, next) {
  * @param next {import('express').NextFunction}
  */
 export async function deleteTodo(req, res, next) {
-  try {
-    const todo = await Todo.findByIdAndDelete(req.params.id);
+  const todo = await Todo.findByIdAndDelete(req.params.id);
 
-    if (!todo) {
-      req.notFoundReason = `Todo ${req.params.id} not found`;
-      return next();
-    }
+  if (!todo) {
+    req.notFoundReason = `Todo ${req.params.id} not found`;
+    return next();
+  }
 
-    res.json(todo);
-  }
-  catch (err) {
-    next(err);
-  }
-};
+  res.json(todo);
+}
 
 /**
  * @param req {import('express').Request}
  * @param res {import('express').Response}
  * @param next {import('express').NextFunction}
  */
-export async function update(req, res, next) {
-  try {
-    const todo = await Todo.findByIdAndUpdate(req.params.id, req.body);
+export async function replaceTodo(req, res, next) {
+  const todo = await Todo.findByIdAndReplace(req.params.id, req.body);
 
-    if (!todo) {
-      req.notFoundReason = `Todo ${req.params.id} not found`;
-      return next();
-    }
+  if (!todo) {
+    req.notFoundReason = `Todo ${req.params.id} not found`;
+    return next();
+  }
 
-    res.json(todo);
+  res.json(todo);
+}
+
+/**
+ * @param req {import('express').Request}
+ * @param res {import('express').Response}
+ * @param next {import('express').NextFunction}
+ */
+export async function updateTodo(req, res, next) {
+  const todo = await Todo.findByIdAndUpdate(req.params.id, req.body);
+
+  if (!todo) {
+    req.notFoundReason = `Todo ${req.params.id} not found`;
+    return next();
   }
-  catch (err) {
-    next(err);
-  }
-};
+
+  res.json(todo);
+}

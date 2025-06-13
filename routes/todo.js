@@ -7,19 +7,19 @@ const router = express.Router();
 
 // prettier-ignore
 router.get('/',
-  todoCtrl.list,
+  todoCtrl.listTodos,
 );
 
 // prettier-ignore
 router.get('/:id',
-  todoCtrl.show,
+  todoCtrl.showTodo,
 );
 
 // prettier-ignore
 router.post('/',
   authenticate,
   express.json(),
-  todoCtrl.add
+  todoCtrl.addTodo,
 );
 
 // prettier-ignore
@@ -32,7 +32,14 @@ router.delete('/:id',
 router.put('/:id',
   authenticate,
   express.json(),
-  todoCtrl.update,
+  todoCtrl.replaceTodo,
+);
+
+// prettier-ignore
+router.patch('/:id',
+  authenticate,
+  express.json(),
+  todoCtrl.updateTodo,
 );
 
 export default router;

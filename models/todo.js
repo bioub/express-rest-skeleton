@@ -11,68 +11,74 @@ const todos = [
   }
 ];
 
-function generateId() {
+export function nextId() {
   const maxId = todos.reduce((acc, c) => c.id > acc ? c.id : acc, 0);
   return maxId + 1;
 }
 
-function find() {
-  return Promise.resolve(todos);
+export async function find() {
+  return todos;
 }
 
-function findById(id) {
+export async function findById(id) {
   id = Number(id);
   const todo = todos.find((c) => c.id === id);
 
   if (!todo) {
-    return Promise.resolve(null);
+    return null;
   }
 
-  return Promise.resolve(todo);
+  return todo;
 }
 
-function create(todo) {
-  todo.id = generateId();
+export async function create(todo) {
+  todo.id = nextId();
 
   todos.push(todo);
 
-  return Promise.resolve(todo);
+  return todo;
 }
 
-function findByIdAndDelete(id) {
+export async function findByIdAndDelete(id) {
   id = Number(id);
   const todo = todos.find((c) => c.id === id);
 
   if (!todo) {
-    return Promise.resolve(null);
+    return null;
   }
 
   const index = todos.indexOf(todo);
   todos.splice(index, 1);
 
-  return Promise.resolve(todo);
+  return todo;
 }
 
-
-function findByIdAndUpdate(id, newTodo) {
+export async function findByIdAndReplace(id, newTodo) {
   id = Number(id);
   const todo = todos.find((c) => c.id === id);
   newTodo.id = id;
 
   if (!todo) {
-    return Promise.resolve(null);
+    return null;
   }
 
   const index = todos.indexOf(todo);
   todos[index] = newTodo;
 
-  return Promise.resolve(todo);
+  return todo;
 }
 
-export {
-  find,
-  findById,
-  create,
-  findByIdAndDelete,
-  findByIdAndUpdate,
-};
+export async function findByIdAndUpdate(id, newTodo) {
+  id = Number(id);
+  const todo = todos.find((c) => c.id === id);
+
+  if (!todo) {
+    return null;
+  }
+
+  for (const [key, value] of Object.entries(newTodo)) {
+    todo[key] = value;
+  }
+
+  return todo;
+}
